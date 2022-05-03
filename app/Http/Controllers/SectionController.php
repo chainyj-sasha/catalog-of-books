@@ -10,11 +10,11 @@ class SectionController extends Controller
 {
     public function index()
     {
-        // TODO if(auth()->user()->admin == 1){$sections = Section::all();} else {Section::where(active, 1)->get();
-        //  если юзер - админ, то выбрать все, а если нет - выбрать активные (Сделать после регистрации).
-
-
-        $sections = Section::all();
+        if (auth()->check() && auth()->user()->admin){
+            $sections = Section::all();
+        } else {
+            $sections = Section::where('active', '1')->get();
+        }
 
         return view('section.index', [
             'title' => 'Разделы',

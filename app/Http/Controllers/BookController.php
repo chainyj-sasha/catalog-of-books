@@ -12,12 +12,12 @@ class BookController extends Controller
     public function index($authorId)
     {
         if (auth()->check() && auth()->user()->admin){
-            $books = Book::where('author_id', $authorId)->simplePaginate('2'); // TODO пагинацию исправить на 5 шт на странице
+            $books = Book::where('author_id', $authorId)->simplePaginate('5');
         } else {
             $books = Book::where([
                 ['author_id', '=', $authorId],
                 ['active', '=', '1'],
-            ])->simplePaginate('2'); // TODO пагинацию исправить на 5 шт на странице
+            ])->simplePaginate('5');
         }
 
         return view('book.index', [
@@ -73,9 +73,9 @@ class BookController extends Controller
     public function showAll()
     {
         if (auth()->check() && auth()->user()->admin){
-            $books = Book::simplePaginate(2); // TODO исправить на 5 шт
+            $books = Book::simplePaginate(5);
         } else {
-            $books = Book::where('active', '1')->simplePaginate(2); // TODO исправить на 5 шт
+            $books = Book::where('active', '1')->simplePaginate(5);
         }
 
         return view('book.showAll', [
@@ -101,10 +101,10 @@ class BookController extends Controller
     public function sort(Request $request)
     {
         if ($request->has('book')){
-            $books = Book::where('active', '1')->orderBy('name', 'asc')->simplePaginate(2); // TODO исправить на 5 шт
+            $books = Book::where('active', '1')->orderBy('name', 'asc')->simplePaginate(5);
         }
         if ($request->has('author')){
-            $books = Book::where('active', '1')->orderBy('author_id', 'asc')->simplePaginate(2); // TODO исправить на 5 шт
+            $books = Book::where('active', '1')->orderBy('author_id', 'asc')->simplePaginate(5);
         }
 
         return view('book.showAll', [

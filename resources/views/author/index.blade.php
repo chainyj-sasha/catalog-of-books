@@ -10,7 +10,6 @@
         @foreach($authors as $author)
             <li>
                 <a href="{{ route('books.index', ['id' => $author->id]) }}">{{ $author->name }}</a> | {{ $author->country }} | {{ $author->annotation }}
-{{--                TODO Если администратор, то появится кнопка для редактирования автора --}}
                 @if(auth()->check() && auth()->user()->admin)
                     <form action="{{ route('authors.edit', ['id' => $author->id]) }}" method="">
                         <button style="width: 110px; height: 20px">Редактировать</button>
@@ -20,7 +19,6 @@
         @endforeach
     </ul>
 
-{{--    TODO только администраторы могут добавлять новых и редактировать авторов--}}
     @if(auth()->check() && auth()->user()->admin)
         <form action="{{ route('authors.store') }}" method="post">
             @csrf

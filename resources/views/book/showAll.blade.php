@@ -30,7 +30,6 @@
         </form>
     </p>
 
-
     <h3>Поиск по названию книги:</h3>
 
     <form action="{{ route('books.find') }}" method="">

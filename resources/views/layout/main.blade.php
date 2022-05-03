@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 </head>
-<p>
+<body>
+
 
 @if(session('success'))
     {{ session('success') }}
@@ -25,7 +26,7 @@
     <a href="{{ route('users.logout') }}"> Разлогин</a>
 @endif
 
-<h1>Приложение для ведения каталога книг</h1>
+    <h1>Приложение для ведения каталога книг</h1>
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -42,12 +43,13 @@
 @yield('content')
 
 
-    @if($_SERVER['REQUEST_URI'] != '/sections')
-        <p>
-            <form action="{{ route('sections.index') }}">
-                <button>На главную</button>
-            </form>
-        </p>
-    @endif
+@if($_SERVER['REQUEST_URI'] != '/sections')
+    <p>
+    <form action="{{ route('sections.index') }}">
+        <button>На главную</button>
+    </form>
+    </p>
+@endif
 
+</body>
 </html>

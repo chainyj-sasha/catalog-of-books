@@ -4,8 +4,6 @@
 
 @section('content')
 
-{{--    TODO если юзер - администратор, то показывать форму --}}
-
     <h3>Редактирование автора:</h3>
 
     <form action="{{ route('authors.update', ['id' => $author->id]) }}" method="post">

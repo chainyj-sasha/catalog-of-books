@@ -51,8 +51,6 @@ class UserController extends Controller
             }
             return redirect()->back();
         }
-
-
     }
 
     public function logout()
